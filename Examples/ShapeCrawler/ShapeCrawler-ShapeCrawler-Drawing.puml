@@ -1,0 +1,12 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.Drawing" {
+  class CroppingFrame {
+    + Left : decimal
+    + Right : decimal
+    + Top : decimal
+    + Bottom : decimal
+    + Parse(string crop) : CroppingFrame
+  }
+}
+@enduml

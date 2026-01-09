@@ -1,0 +1,578 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler" {
+  class ChartType {
+  }
+  class IAxis {
+    + Minimum : double
+    + Maximum : double
+  }
+  class ICategory {
+    + HasMainCategory : bool
+    + MainCategory : ICategory
+    + Name : string
+  }
+  class IChart {
+    + Type : ChartType
+    + Title : IChartTitle?
+    + Categories : IReadOnlyList<ICategory>?
+    + XAxis : IXAxis?
+    + SeriesCollection : ISeriesCollection
+    + GetWorksheetByteArray() : byte[]
+  }
+  class IChartPoint {
+    + Value : double
+  }
+  class IChartTitle {
+    + Text : string?
+    + FontColor : string
+    + FontSize : int
+    + Alignment : IChartTitleAlignment
+  }
+  class IChartTitleAlignment {
+    + CustomAngle : decimal
+    + X : decimal?
+    + Y : decimal?
+  }
+  class ISeries {
+    + Name : string
+    + Type : ChartType
+    + Points : IReadOnlyList<IChartPoint>
+    + HasName : bool
+  }
+  class ISeriesCollection {
+    + RemoveAt(int index) : void
+  }
+  class Color {
+    + Alpha : float
+    + Hex : string
+    + IsTransparent : bool
+  }
+  class ColorType {
+  }
+  class IFontColor {
+    + Type : ColorType
+    + Hex : string
+    + Set(string hex) : void
+  }
+  class FillType {
+  }
+  class IImage {
+    + Mime : string
+    + Name : string
+    + AsByteArray() : byte[]
+    + Update(Stream stream) : void
+  }
+  class IPicture {
+    + Image : IImage?
+    + SvgContent : string?
+    + Crop : CroppingFrame
+    + Transparency : decimal
+    + SendToBack() : void
+  }
+  class IShapeFill {
+    + Type : FillType
+    + Picture : IImage?
+    + Color : string?
+    + Alpha : double
+    + LuminanceModulation : double
+    + LuminanceOffset : double
+    + SetPicture(Stream image) : void
+    + SetColor(string hex) : void
+    + SetNoFill() : void
+  }
+  class IShapeOutline {
+    + Weight : decimal
+    + HexColor : string?
+    + SetHexColor(string value) : void
+    + SetNoOutline() : void
+  }
+  class IFont {
+    + Size : decimal
+  }
+  class ITextPortionFont {
+    + LatinName : string?
+    + EastAsianName : string
+    + IsBold : bool
+    + IsItalic : bool
+    + OffsetEffect : int
+    + Underline : TextUnderlineValues
+    + Color : IFontColor
+  }
+  class AudioStartMode {
+  }
+  class AudioType {
+  }
+  class IMedia {
+    + MIME : string
+    + StartMode : AudioStartMode
+    + AsByteArray() : byte[]
+  }
+  class IParagraph {
+    + Text : string
+    + Portions : IParagraphPortions
+    + Bullet : Bullet
+    + HorizontalAlignment : TextHorizontalAlignment
+    + Spacing : ISpacing
+    + FontColor : string
+    + LeftMargin : decimal
+    + IndentLevel : int
+    + FirstLineIndent : decimal
+    + ReplaceText(string oldValue, string newValue) : void
+    + Remove() : void
+    + SetFontSize(int fontSize) : void
+    + SetFontName(string fontName) : void
+    + SetFontColor(string colorHex) : void
+    + SetLeftMargin(decimal points) : void
+  }
+  class IParagraphCollection {
+    + Add() : void
+    + Add(string content, int index) : void
+  }
+  class IParagraphPortion {
+    + Text : string
+    + Font : ITextPortionFont?
+    + Link : IHyperlink?
+    + TextHighlightColor : Color
+    + Remove() : void
+  }
+  class IParagraphPortions {
+    + Count : int
+    + this[] : IParagraphPortion
+    + AddText(string text) : void
+    + AddLineBreak() : void
+  }
+  class IPosition {
+    + X : decimal
+    + Y : decimal
+  }
+  class Point {
+    + X : decimal
+    + Y : decimal
+  }
+  class IFooter {
+    + SlideNumberAdded() : bool
+    + AddSlideNumber() : void
+    + RemoveSlideNumber() : void
+    + AddText(string text) : void
+    + RemoveText() : void
+    + AddTextOnSlide(int slideNumber, string text) : void
+    + RemoveTextOnSlide(int slideNumber) : void
+  }
+  class IPresentation {
+    + Slides : ISlideCollection
+    + SlideWidth : decimal
+    + SlideHeight : decimal
+    + MasterSlides : IMasterSlideCollection
+    + Sections : ISectionCollection
+    + Footer : IFooter
+    + Properties : IPresentationProperties
+    + Slide(int number) : IUserSlide
+    + Save() : void
+    + Save(Stream stream) : void
+    + Save(string file) : void
+    + AsMarkdown() : string
+    + GetSdkPresentationDocument() : PresentationDocument
+    + AsBase64() : string
+  }
+  class IPresentationProperties {
+    + Categories : string?
+    + ContentStatus : string?
+    + Created : DateTime?
+    + Author : string?
+    + Comments : string?
+    + Tags : string?
+    + Language : string?
+    + LastModifiedBy : string?
+    + LastPrinted : DateTime?
+    + Modified : DateTime?
+    + RevisionNumber : int?
+    + Subject : string?
+    + Title : string?
+    + Version : string?
+  }
+  class Presentation {
+    + Slides : ISlideCollection
+    + SlideHeight : decimal
+    + SlideWidth : decimal
+    + MasterSlides : IMasterSlideCollection
+    + Sections : ISectionCollection
+    + Footer : IFooter
+    + Properties : IPresentationProperties
+    + Create(Action<DraftPresentation> configure) : DraftPresentation
+    + Slide(int number) : IUserSlide
+    + SlideMaster(int number) : IMasterSlide
+    + Save() : void
+    + Save(Stream stream) : void
+    + Save(string file) : void
+    + AsMarkdown() : string
+    + AsBase64() : string
+    + GetSdkPresentationDocument() : PresentationDocument
+    + Dispose() : void
+  }
+  class SCException {
+  }
+  class ISection {
+    + Slides : IReadOnlyList<IUserSlide>
+    + Name : string
+  }
+  class ISectionCollection {
+    + this[] : ISection
+    + Remove(ISection removingSection) : void
+    + GetByName(string sectionName) : ISection
+  }
+  class Geometry {
+  }
+  class ILine {
+    + StartPoint : Point
+    + EndPoint : Point
+  }
+  class IShape {
+    + Width : decimal
+    + Height : decimal
+    + Id : int
+    + Name : string
+    + AltText : string
+    + Hidden : bool
+    + PlaceholderType : PlaceholderType?
+    + CustomData : string?
+    + Outline : IShapeOutline?
+    + Fill : IShapeFill?
+    + TextBox : ITextBox?
+    + Picture : IPicture?
+    + Chart : IChart?
+    + Table : ITable?
+    + OleObject : IOleObject?
+    + Media : IMedia?
+    + Line : ILine?
+    + SmartArt : ISmartArt?
+    + Rotation : double
+    + SdkXPath : string
+    + SdkOpenXmlElement : OpenXmlElement
+    + Presentation : IPresentation
+    + GroupedShapes : IShapeCollection?
+    + Remove() : void
+    + Duplicate() : void
+    + SetText(string text) : void
+    + SetMarkdownText(string text) : void
+    + SetImage(string imagePath) : void
+    + SetFontName(string fontName) : void
+    + SetFontSize(decimal fontSize) : void
+    + SetFontColor(string colorHex) : void
+    + SetVideo(Stream video) : void
+    + GroupedShape(string name) : IShape
+  }
+  class IShapeCollection {
+    + GetById(int id) : IShape
+    + GetById(int id) : T
+    + Shape(string name) : IShape
+    + Shape(string name) : T
+    + Last() : T
+  }
+  class IShapeGeometry {
+    + GeometryType : Geometry
+    + CornerSize : decimal
+    + Adjustments : decimal[]
+  }
+  class PlaceholderType {
+  }
+  class ILayoutSlide {
+    + Name : string
+    + Shapes : IShapeCollection
+    + MasterSlide : IMasterSlide
+    + Number : int
+    + Background : ILayoutSlideBackground
+  }
+  class ILayoutSlideBackground {
+    + SolidFill : ISolidFill
+    + SolidFillColor(string hex) : void
+    + Picture(Stream image) : void
+    + Picture() : MemoryStream
+  }
+  class IMasterSlide {
+    + Number : int
+    + Background : IImage?
+    + LayoutSlides : ILayoutSlideCollection
+    + Shapes : IShapeCollection
+    + Theme : ITheme
+    + SlideNumber : IMasterSlideNumber?
+    + Shape(string shape) : IShape
+    + SlideLayout(string name) : ILayoutSlide
+    + SlideLayout(int number) : ILayoutSlide
+  }
+  class IMasterSlideCollection {
+    + this[] : IMasterSlide
+  }
+  class IMasterSlideNumber {
+    + Font : ISlideNumberFont
+  }
+  class ISlideNumberFont {
+    + Color : Color
+  }
+  class ITheme {
+    + FontScheme : IThemeFontScheme
+    + ColorScheme : IThemeColorScheme
+  }
+  class IThemeColorScheme {
+    + Dark1 : string
+    + Light1 : string
+    + Dark2 : string
+    + Light2 : string
+    + Accent1 : string
+    + Accent2 : string
+    + Accent3 : string
+    + Accent4 : string
+    + Accent5 : string
+    + Accent6 : string
+    + Hyperlink : string
+    + FollowedHyperlink : string
+  }
+  class IThemeFontScheme {
+    + HeadLatinFont : string
+    + BodyLatinFont : string
+    + BodyEastAsianFont : string
+    + HeadEastAsianFont : string
+  }
+  class ISlideCollection {
+    + Add(int layoutNumber) : void
+    + Add(int layoutNumber, int slideNumber) : void
+    + Add(IUserSlide userSlide) : void
+    + Add(IUserSlide userSlide, int slideNumber) : void
+  }
+  class IUserSlide {
+    + CustomData : string?
+    + LayoutSlide : ILayoutSlide
+    + Number : int
+    + Shapes : IUserSlideShapeCollection
+    + Notes : ITextBox?
+    + Fill : IShapeFill
+    + GetTexts() : IList<ITextBox>
+    + Hide() : void
+    + Hidden() : bool
+    + AddNotes(IEnumerable<string> lines) : void
+    + Shape(string name) : IShape
+    + Shape(int id) : IShape
+    + Shape(string name) : T
+    + Remove() : void
+    + SaveImageTo(Stream stream) : void
+    + SaveImageTo(string file) : void
+    + GetSdkPresentationPart() : PresentationPart
+    + First() : T
+  }
+  class IUserSlideShapeCollection {
+    + Add(IShape addingShape) : void
+    + AddAudio(int x, int y, Stream audio) : void
+    + AddAudio(int x, int y, Stream audio, AudioType type) : void
+    + AddVideo(int x, int y, Stream stream) : void
+    + AddShape(int x, int y, int width, int height) : void
+    + AddShape(int x, int y, int width, int height, Geometry geometry) : void
+    + AddShape(int x, int y, int width, int height, Geometry geometry, string text) : void
+    + AddTextBox(int x, int y, int width, int height, string text) : void
+    + AddLine(string xml) : void
+    + AddLine(int startPointX, int startPointY, int endPointX, int endPointY) : void
+    + AddTable(int x, int y, int columnsCount, int rowsCount) : void
+    + AddTable(int x, int y, int columnsCount, int rowsCount, ITableStyle style) : void
+    + AddPicture(Stream imageStream) : void
+    + AddPieChart(double x, double y, double width, double height, Dictionary<string, double> categoryValues, string seriesName) : void
+    + AddPieChart(double x, double y, double width, double height, Dictionary<string, double> categoryValues, string seriesName, string chartName) : void
+    + AddBarChart(int x, int y, int width, int height, Dictionary<string, double> categoryValues, string seriesName) : void
+    + AddScatterChart(int x, int y, int width, int height, Dictionary<double, double> pointValues, string seriesName) : void
+    + AddClusteredBarChart(int x, int y, int width, int height, IList<string> categories, IList<SeriesData> seriesData, string chartName) : void
+    + AddClusteredBarChart(int x, int y, int width, int height, IList<List<string>> categories, IList<SeriesData> seriesData, string chartName) : void
+    + AddStackedColumnChart(int x, int y, int width, int height, IDictionary<string, IList<double>> categoryValues, IList<string> seriesNames) : void
+    + AddSmartArt(int x, int y, int width, int height, SmartArtType smartArtType) : IShape
+    + Group(IShape[] groupingShapes) : IShape
+    + AddDateAndTime() : IShape
+    + AddFooter() : IShape
+    + AddSlideNumber() : IShape
+  }
+  class ISmartArt {
+    + Nodes : ISmartArtNodeCollection
+  }
+  class ISmartArtNode {
+    + Text : string
+  }
+  class ISmartArtNodeCollection {
+    + Count : int
+    + AddNode(string text) : ISmartArtNode
+  }
+  class SmartArtType {
+  }
+  class IBorder {
+    + Width : decimal
+    + Color : string?
+  }
+  class IColumn {
+    + Width : decimal
+    + Duplicate() : void
+  }
+  class ITable {
+    + Columns : ITableColumnCollection
+    + Rows : ITableRowCollection
+    + TableStyle : ITableStyle
+    + StyleOptions : ITableStyleOptions
+    + this[] : ITableCell
+    + MergeCells(ITableCell cell1, ITableCell cell2) : void
+    + UpdateFill(string colorHex) : void
+    + Cell(int rowNumber, int columnNumber) : ITableCell
+  }
+  class ITableCell {
+    + TextBox : ITextBox
+    + IsMergedCell : bool
+    + Fill : IShapeFill
+    + TopBorder : IBorder
+    + BottomBorder : IBorder
+    + LeftBorder : IBorder
+    + RightBorder : IBorder
+  }
+  class ITableRow {
+    + Cells : IReadOnlyList<ITableCell>
+    + Height : decimal
+    + Duplicate() : void
+  }
+  class ITableRowCollection {
+    + Count : int
+    + this[] : ITableRow
+    + Remove(ITableRow removing) : void
+    + RemoveAt(int index) : void
+    + Add() : void
+    + Add(int index) : void
+    + Add(int index, int templateRowIndex) : void
+  }
+  class ITableStyle {
+    + Name : string
+  }
+  class AutofitType {
+  }
+  class Bullet {
+    + ColorHex : string?
+    + Character : string?
+    + FontName : string?
+    + Size : int
+    + Type : BulletType
+  }
+  class BulletType {
+  }
+  class IHyperlink {
+    + File : string?
+    + SlideNumber : int?
+    + AddFile(string file) : void
+    + AddSlideNumber(int slide) : void
+  }
+  class ISpacing {
+    + LineSpacingLines : double?
+    + LineSpacing : decimal?
+    + BeforeSpacing : decimal
+    + AfterSpacing : decimal
+  }
+  class ITextBox {
+    + Paragraphs : IParagraphCollection
+    + Text : string
+    + VerticalAlignment : TextVerticalAlignment
+    + AutofitType : AutofitType
+    + TextDirection : TextDirection
+    + LeftMargin : decimal
+    + RightMargin : decimal
+    + TopMargin : decimal
+    + BottomMargin : decimal
+    + TextWrapped : bool
+    + SdkXPath : string
+    + SetText(string text) : void
+    + SetMarkdownText(string text) : void
+  }
+  class TextHorizontalAlignment {
+  }
+  class TextVerticalAlignment {
+  }
+}
+Bullet --> BulletType
+IChart --> ChartType
+IChart --> IChartTitle
+IChart --> ISeriesCollection
+IChart --> IXAxis
+IChartTitle --> IChartTitleAlignment
+IFont <|.. ISlideNumberFont
+IFont <|.. ITextPortionFont
+IFontColor --> ColorType
+ILayoutSlide --> ILayoutSlideBackground
+ILayoutSlide --> IMasterSlide
+ILayoutSlide --> IShapeCollection
+ILayoutSlideBackground --> ISolidFill
+ILine --> Point
+IMasterSlide --> IImage
+IMasterSlide --> ILayoutSlideCollection
+IMasterSlide --> IMasterSlideNumber
+IMasterSlide --> IShapeCollection
+IMasterSlide --> ITheme
+IMasterSlideCollection --> IMasterSlide
+IMasterSlideNumber --> ISlideNumberFont
+IMedia --> AudioStartMode
+IParagraph --> Bullet
+IParagraph --> IParagraphPortions
+IParagraph --> ISpacing
+IParagraph --> TextHorizontalAlignment
+IParagraphPortion --> Color
+IParagraphPortion --> IHyperlink
+IParagraphPortion --> ITextPortionFont
+IParagraphPortions --> IParagraphPortion
+IPicture --> CroppingFrame
+IPicture --> IImage
+IPosition <|.. IMasterSlideNumber
+IPosition <|.. IShape
+IPresentation --> IFooter
+IPresentation --> IMasterSlideCollection
+IPresentation --> IPresentationProperties
+IPresentation --> ISectionCollection
+IPresentation --> ISlideCollection
+IPresentation <|.. Presentation
+ISection --> IUserSlide
+ISectionCollection --> ISection
+ISeries --> ChartType
+ISeries --> IChartPoint
+IShape --> IChart
+IShape --> ILine
+IShape --> IMedia
+IShape --> IOleObject
+IShape --> IPicture
+IShape --> IPresentation
+IShape --> IShapeCollection
+IShape --> IShapeFill
+IShape --> IShapeOutline
+IShape --> ISmartArt
+IShape --> ITable
+IShape --> ITextBox
+IShape --> PlaceholderType
+IShapeCollection <|.. IUserSlideShapeCollection
+IShapeFill --> FillType
+IShapeFill --> IImage
+IShapeGeometry --> Geometry
+IShapeGeometry <|.. IShape
+ISlideNumberFont --> Color
+ISmartArt --> ISmartArtNodeCollection
+ITable --> ITableCell
+ITable --> ITableColumnCollection
+ITable --> ITableRowCollection
+ITable --> ITableStyle
+ITable --> ITableStyleOptions
+ITableCell --> IBorder
+ITableCell --> IShapeFill
+ITableCell --> ITextBox
+ITableRow --> ITableCell
+ITableRowCollection --> ITableRow
+ITextBox --> AutofitType
+ITextBox --> IParagraphCollection
+ITextBox --> TextDirection
+ITextBox --> TextVerticalAlignment
+ITextPortionFont --> IFontColor
+ITheme --> IThemeColorScheme
+ITheme --> IThemeFontScheme
+IUserSlide --> ILayoutSlide
+IUserSlide --> IShapeFill
+IUserSlide --> ITextBox
+IUserSlide --> IUserSlideShapeCollection
+Presentation --> IFooter
+Presentation --> IMasterSlideCollection
+Presentation --> IPresentationProperties
+Presentation --> ISectionCollection
+Presentation --> ISlideCollection
+@enduml

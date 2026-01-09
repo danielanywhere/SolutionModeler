@@ -1,0 +1,165 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.Presentations" {
+  class DraftCell {
+    + FillSolidColor(string hex) : DraftCell
+    + FontColor(string hex) : DraftCell
+    + TextBox(string content) : DraftCell
+  }
+  class DraftChart {
+    + Name(string name) : DraftChart
+    + X(int x) : DraftChart
+    + Y(int y) : DraftChart
+    + Width(int width) : DraftChart
+    + Height(int height) : DraftChart
+    + Categories(string[] categories) : DraftChart
+    + Categories((string Main, string Sub)[] categories) : DraftChart
+    + Series(string seriesName, double[] values) : DraftChart
+  }
+  class SeriesData {
+  }
+  class DraftClusteredBarChartShape {
+    + X(int x) : DraftClusteredBarChartShape
+    + Y(int y) : DraftClusteredBarChartShape
+    + Width(int width) : DraftClusteredBarChartShape
+    + Height(int height) : DraftClusteredBarChartShape
+    + Chart(Action<DraftChart> configure) : DraftClusteredBarChartShape
+  }
+  class DraftFont {
+    + Size(int size) : DraftFont
+    + Bold() : DraftFont
+  }
+  class DraftIndentation {
+    + BeforeText(decimal points) : DraftIndentation
+  }
+  class DraftLine {
+    + Name(string name) : DraftLine
+    + X(int x) : DraftLine
+    + Y(int y) : DraftLine
+    + Width(int width) : DraftLine
+    + Height(int height) : DraftLine
+    + Line(Action<DraftStroke> configure) : DraftLine
+    + EndArrow(LineEndValues type) : DraftLine
+    + StartArrow(LineEndValues type) : DraftLine
+  }
+  class DraftParagraph {
+    + Text(string text) : DraftParagraph
+    + Font(Action<DraftFont> configure) : DraftParagraph
+    + Indentation(Action<DraftIndentation> configure) : DraftParagraph
+    + BulletedList() : DraftParagraph
+    + BulletedList(string character) : DraftParagraph
+  }
+  class DraftPicture {
+    + Name(string name) : DraftPicture
+    + X(int x) : DraftPicture
+    + Y(int y) : DraftPicture
+    + Width(int width) : DraftPicture
+    + Height(int height) : DraftPicture
+    + Image(Stream image) : DraftPicture
+    + GeometryType(string geometry) : DraftPicture
+  }
+  class DraftPieChart {
+    + Name(string name) : DraftPieChart
+    + X(int x) : DraftPieChart
+    + Y(int y) : DraftPieChart
+    + Width(int width) : DraftPieChart
+    + Height(int height) : DraftPieChart
+    + Categories(string[] categories) : DraftPieChart
+    + Series(string seriesName, double[] values) : DraftPieChart
+  }
+  class DraftPieChartShape {
+    + X(int x) : DraftPieChartShape
+    + Y(int y) : DraftPieChartShape
+    + Width(int width) : DraftPieChartShape
+    + Height(int height) : DraftPieChartShape
+    + Chart(Action<DraftPieChart> configure) : DraftPieChartShape
+  }
+  class DraftPresentation {
+    + Slide() : DraftPresentation
+    + Slide(Action<DraftSlide> configure) : DraftPresentation
+    + Slide(ILayoutSlide layout) : DraftPresentation
+    + Slide(string layoutName) : DraftPresentation
+    + SlideMaster(int number) : IMasterSlide
+  }
+  class DraftRectangle {
+    + Name(string name) : DraftRectangle
+    + X(int x) : DraftRectangle
+    + Y(int y) : DraftRectangle
+    + Width(int width) : DraftRectangle
+    + Height(int height) : DraftRectangle
+    + SolidFill(Action<DraftSolidFill> configure) : DraftRectangle
+  }
+  class DraftRow {
+    + Cell() : DraftRow
+    + Cell(Action<DraftCell> configure) : DraftRow
+    + Cell(int index) : DraftCell
+  }
+  class DraftShapeText {
+    + Paragraph(string text) : DraftShapeText
+    + Paragraph(Action<DraftParagraph> configure) : DraftShapeText
+  }
+  class DraftSlide {
+    + Picture(string name, int x, int y, int width, int height, Stream image) : DraftSlide
+    + Picture(byte[] imageBytes) : DraftSlide
+    + Picture(Action<DraftPicture> configure) : DraftSlide
+    + TextShape(string content) : DraftSlide
+    + TextShape(string content, int x, int y) : DraftSlide
+    + TextShape(string content, int x, int y, int width, int height) : DraftSlide
+    + TextShape(string content, int? x, int? y, int width, int height) : DraftSlide
+    + TextShape(string name, int x, int y, int width, int height, string content) : DraftSlide
+    + TextShape(Action<DraftTextBox> configure) : DraftSlide
+    + Shape(Action<DraftTextBox> configure) : DraftSlide
+    + RectangleShape(Action<DraftRectangle> configure) : DraftSlide
+    + LineShape(string name, int startPointX, int startPointY, int endPointX, int endPointY) : DraftSlide
+    + LineShape(Action<DraftLine> configure) : DraftSlide
+    + ArrowLineShape(Action<DraftLine> configure) : DraftSlide
+    + Video(string name, int x, int y, int elementWidth, int elementHeight, Stream content) : DraftSlide
+    + TableShape(string name, int x, int y, int columnsCount, int rowsCount) : DraftSlide
+    + TableShape(Action<DraftTable> configure) : DraftSlide
+    + TableShape(Action<DraftTableShape> configure) : DraftSlide
+    + PieChartShape(string name) : DraftSlide
+    + PieChartShape(Action<DraftPieChartShape> configure) : DraftSlide
+    + ClusteredBarChartShape(Action<DraftChart> configure) : DraftSlide
+    + ClusteredBarChartShape(Action<DraftClusteredBarChartShape> configure) : DraftSlide
+    + SolidBackground(string hexColor) : DraftSlide
+    + ImageBackground(byte[] imageBytes) : DraftSlide
+  }
+  class DraftSolidFill {
+    + Color(string hexColor) : DraftSolidFill
+    + Transparency(decimal transparencyPercent) : DraftSolidFill
+  }
+  class DraftStroke {
+    + Width(decimal points) : DraftStroke
+  }
+  class DraftTable {
+    + Columns(int count) : DraftTable
+    + Row(Action<DraftRow> configure) : DraftTable
+  }
+  class DraftTableShape {
+    + X(int x) : DraftTableShape
+    + Y(int y) : DraftTableShape
+    + Table(Action<DraftTable> configure) : DraftTableShape
+  }
+  class DraftTextBox {
+    + Geometry(Geometry geometry) : DraftTextBox
+    + Font(Action<DraftFont> configure) : DraftTextBox
+    + TextBox(string text) : DraftTextBox
+    + TextBox(Action<DraftShapeText> configure) : DraftTextBox
+    + TextHighlightColor(Color color) : DraftTextBox
+    + Name(string name) : DraftTextBox
+    + X(int x) : DraftTextBox
+    + Y(int y) : DraftTextBox
+    + Width(int width) : DraftTextBox
+    + Height(int height) : DraftTextBox
+    + Paragraph(string content) : DraftTextBox
+    + Paragraph(Action<DraftParagraph> configure) : DraftTextBox
+  }
+  class ITimeProvider {
+    + UtcNow : DateTime
+  }
+  class SCSettings {
+    + TimeProvider : ITimeProvider
+  }
+}
+SCSettings --> ITimeProvider
+@enduml

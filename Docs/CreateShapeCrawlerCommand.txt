@@ -1,0 +1,1 @@
+SolutionModeler C:\Develop\GitHub\ShapeCrawler\ShapeCrawler.sln C:\Develop\Shared\SolutionModeler\Examples\ShapeCrawler\ShapeCrawler.puml

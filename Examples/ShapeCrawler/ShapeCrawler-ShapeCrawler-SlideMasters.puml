@@ -1,0 +1,12 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.SlideMasters" {
+  class ILayoutSlideCollection {
+    + this[] : ILayoutSlide
+  }
+  class ISolidFill {
+    + Color : string
+  }
+}
+ILayoutSlideCollection --> ILayoutSlide
+@enduml

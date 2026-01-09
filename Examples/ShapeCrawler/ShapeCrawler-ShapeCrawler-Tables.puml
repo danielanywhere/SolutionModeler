@@ -1,0 +1,99 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.Tables" {
+  class CommonTableStyles {
+    + NoStyleNoGrid : ITableStyle
+    + NoStyleTableGrid : ITableStyle
+    + ThemedStyle1Accent1 : ITableStyle
+    + ThemedStyle1Accent2 : ITableStyle
+    + ThemedStyle1Accent3 : ITableStyle
+    + ThemedStyle1Accent4 : ITableStyle
+    + ThemedStyle1Accent5 : ITableStyle
+    + ThemedStyle1Accent6 : ITableStyle
+    + ThemedStyle2Accent1 : ITableStyle
+    + ThemedStyle2Accent2 : ITableStyle
+    + ThemedStyle2Accent3 : ITableStyle
+    + ThemedStyle2Accent4 : ITableStyle
+    + ThemedStyle2Accent5 : ITableStyle
+    + ThemedStyle2Accent6 : ITableStyle
+    + LightStyle1 : ITableStyle
+    + LightStyle1Accent1 : ITableStyle
+    + LightStyle1Accent2 : ITableStyle
+    + LightStyle1Accent3 : ITableStyle
+    + LightStyle1Accent4 : ITableStyle
+    + LightStyle1Accent5 : ITableStyle
+    + LightStyle1Accent6 : ITableStyle
+    + LightStyle2 : ITableStyle
+    + LightStyle2Accent1 : ITableStyle
+    + LightStyle2Accent2 : ITableStyle
+    + LightStyle2Accent3 : ITableStyle
+    + LightStyle2Accent4 : ITableStyle
+    + LightStyle2Accent5 : ITableStyle
+    + LightStyle2Accent6 : ITableStyle
+    + LightStyle3 : ITableStyle
+    + LightStyle3Accent1 : ITableStyle
+    + LightStyle3Accent2 : ITableStyle
+    + LightStyle3Accent3 : ITableStyle
+    + LightStyle3Accent4 : ITableStyle
+    + LightStyle3Accent5 : ITableStyle
+    + LightStyle3Accent6 : ITableStyle
+    + MediumStyle1 : ITableStyle
+    + MediumStyle1Accent1 : ITableStyle
+    + MediumStyle1Accent2 : ITableStyle
+    + MediumStyle1Accent3 : ITableStyle
+    + MediumStyle1Accent4 : ITableStyle
+    + MediumStyle1Accent5 : ITableStyle
+    + MediumStyle1Accent6 : ITableStyle
+    + MediumStyle2 : ITableStyle
+    + MediumStyle2Accent1 : ITableStyle
+    + MediumStyle2Accent2 : ITableStyle
+    + MediumStyle2Accent3 : ITableStyle
+    + MediumStyle2Accent4 : ITableStyle
+    + MediumStyle2Accent5 : ITableStyle
+    + MediumStyle2Accent6 : ITableStyle
+    + MediumStyle3 : ITableStyle
+    + MediumStyle3Accent1 : ITableStyle
+    + MediumStyle3Accent2 : ITableStyle
+    + MediumStyle3Accent3 : ITableStyle
+    + MediumStyle3Accent4 : ITableStyle
+    + MediumStyle3Accent5 : ITableStyle
+    + MediumStyle3Accent6 : ITableStyle
+    + MediumStyle4 : ITableStyle
+    + MediumStyle4Accent1 : ITableStyle
+    + MediumStyle4Accent2 : ITableStyle
+    + MediumStyle4Accent3 : ITableStyle
+    + MediumStyle4Accent4 : ITableStyle
+    + MediumStyle4Accent5 : ITableStyle
+    + MediumStyle4Accent6 : ITableStyle
+    + DarkStyle1 : ITableStyle
+    + DarkStyle1Accent1 : ITableStyle
+    + DarkStyle1Accent2 : ITableStyle
+    + DarkStyle1Accent3 : ITableStyle
+    + DarkStyle1Accent4 : ITableStyle
+    + DarkStyle1Accent5 : ITableStyle
+    + DarkStyle1Accent6 : ITableStyle
+    + DarkStyle2 : ITableStyle
+    + DarkStyle2Accent1Accent2 : ITableStyle
+    + DarkStyle2Accent3Accent4 : ITableStyle
+    + DarkStyle2Accent5Accent6 : ITableStyle
+  }
+  class ITableColumnCollection {
+    + Count : int
+    + this[] : IColumn
+    + Remove(IColumn removing) : void
+    + RemoveAt(int index) : void
+    + Add() : void
+    + InsertAfter(int columnNumber) : void
+  }
+  class ITableStyleOptions {
+    + HasHeaderRow : bool
+    + HasTotalRow : bool
+    + HasBandedRows : bool
+    + HasFirstColumn : bool
+    + HasLastColumn : bool
+    + HasBandedColumns : bool
+  }
+}
+CommonTableStyles --> ITableStyle
+ITableColumnCollection --> IColumn
+@enduml

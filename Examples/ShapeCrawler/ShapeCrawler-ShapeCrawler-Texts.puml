@@ -1,0 +1,7 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.Texts" {
+  class TextDirection {
+  }
+}
+@enduml

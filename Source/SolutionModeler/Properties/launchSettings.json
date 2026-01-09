@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SolutionModeler": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Files\\Dropbox\\Develop\\GitHub\\ShapeCrawler\\ShapeCrawler.sln C:\\Files\\Dropbox\\Develop\\Projects\\ShapeCrawler\\ShapeCrawler.puml"
+    }
+  }
+}

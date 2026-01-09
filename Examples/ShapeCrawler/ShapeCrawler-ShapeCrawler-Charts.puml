@@ -1,0 +1,11 @@
+﻿@startuml
+set namespaceSeparator none
+package "ShapeCrawler.Charts" {
+  class IXAxis {
+    + Values : double[]
+    + Minimum : double
+    + Maximum : double
+    + Title : string?
+  }
+}
+@enduml
