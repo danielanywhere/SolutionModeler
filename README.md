@@ -24,6 +24,12 @@ SolutionModeler C:\Develop\GitHub\ShapeCrawler\ShapeCrawler.sln C:\Develop\Share
 
 <p>&nbsp;</p>
 
+Notes about **PlantUML**. The solution contents are currently output to the PlantUML format, which is associated with the .puml file extension. Although diagrams for .puml files can be generated directly upon the PlantUML website, that approach might not be the most advisable at this time due to a combination of an extreme amount of spam on every page of their project website and the fact that their own instance of the translator has a small file size limit in place.
+
+A useful and reliable alternative method for generating diagrams from PlantUML syntax is to install the PlantUML extension for Visual Studio Code (VSCode) published by jebbs. I can attest that at the time of this writing, his extension has been working without fail on fairly large project files.
+
+<p>&nbsp;</p>
+
 ## Cross Platform
 
 This project has no other dependencies than the Roslyn compiler system, and can be used on Windows, Linux, or macOS.
