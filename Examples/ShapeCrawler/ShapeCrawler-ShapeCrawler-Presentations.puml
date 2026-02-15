@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.Presentations"
 set namespaceSeparator none
 package "ShapeCrawler.Presentations" {
   class DraftCell {

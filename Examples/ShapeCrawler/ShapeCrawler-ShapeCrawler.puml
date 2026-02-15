@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler"
 set namespaceSeparator none
 package "ShapeCrawler" {
   class ChartType {

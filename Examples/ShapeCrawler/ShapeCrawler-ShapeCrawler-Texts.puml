@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.Texts"
 set namespaceSeparator none
 package "ShapeCrawler.Texts" {
   class TextDirection {

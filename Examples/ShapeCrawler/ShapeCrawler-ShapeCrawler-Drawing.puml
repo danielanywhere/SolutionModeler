@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.Drawing"
 set namespaceSeparator none
 package "ShapeCrawler.Drawing" {
   class CroppingFrame {

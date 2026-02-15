@@ -187,7 +187,7 @@ namespace SolutionModeler
 			foreach(IGrouping<string, INamedTypeSymbol> group in mNamespaceGroups)
 			{
 				Clear(builder);
-				builder.AppendLine("@startuml");
+				builder.AppendLine($"@startuml \"{group.Key}\"");
 				builder.AppendLine("set namespaceSeparator none");
 				builder.AppendLine($"package \"{group.Key}\" {{");
 				foreach(INamedTypeSymbol type in group)

@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.SlideMasters"
 set namespaceSeparator none
 package "ShapeCrawler.SlideMasters" {
   class ILayoutSlideCollection {

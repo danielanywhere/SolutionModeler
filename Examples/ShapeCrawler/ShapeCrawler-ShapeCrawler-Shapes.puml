@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.Shapes"
 set namespaceSeparator none
 package "ShapeCrawler.Shapes" {
   class IOleObject {

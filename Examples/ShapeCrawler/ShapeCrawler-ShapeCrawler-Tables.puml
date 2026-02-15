@@ -1,4 +1,4 @@
-﻿@startuml
+﻿@startuml "ShapeCrawler.Tables"
 set namespaceSeparator none
 package "ShapeCrawler.Tables" {
   class CommonTableStyles {
