@@ -28,9 +28,9 @@ SolutionModeler C:\Develop\GitHub\ShapeCrawler\ShapeCrawler.sln C:\Develop\Share
 
 The solution contents are currently output to the PlantUML format, which is associated with the .puml file extension. Although diagrams for .puml files can be generated directly upon the PlantUML website, that approach might not be the most advisable at this time due to a combination of an extreme amount of spam on every page of their project website and the fact that their own instance of the translator has a small file size limit in place.
 
-A useful and reliable alternative method for generating diagrams from PlantUML syntax, which also uses an integrated PlantUML.jar by default, is to install the PlantUML extension for Visual Studio Code (VSCode) published by jebbs. I can attest that at the time of this writing, his extension has been working without fail on fairly large project files.
+A useful and reliable alternative method for generating diagrams from PlantUML syntax, which also uses a local, integrated PlantUML.jar by default, is to install the PlantUML extension for Visual Studio Code (VSCode) published by jebbs. I can attest that at the time of this writing, his extension has been working without fail on fairly large project files.
 
-If you wish to use an updated version of PlantUML.jar from the **Releases** tab of the \[PlantUML Repository\](https://github.com/plantuml/plantuml) on the VS Code extension, you can download and follow this general process once each time you want to upgrade.
+If you wish to use an updated version of PlantUML.jar from the **Releases** tab of the [PlantUML Repository](https://github.com/plantuml/plantuml) on the VS Code extension, you can download and follow this general process once each time you want to upgrade.
 
 -   Open the current release page.
 -   Download **PlantUML.jar**. If questioned whether to Keep or Delete the file, click **Keep**.
